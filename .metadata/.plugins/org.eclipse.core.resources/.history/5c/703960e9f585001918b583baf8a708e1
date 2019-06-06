@@ -1,0 +1,16 @@
+package test101;
+
+public class sumsum {
+
+	public static void main(String[] args) {
+		
+		int i = 0;
+		int j = 0;
+		
+		System.out.print(i + " X " + j + "=" + i*j);
+		System.out.println("dd");
+		System.out.printf("%d X %d = %d", i, j, i*j);
+	
+	}
+
+}

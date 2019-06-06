@@ -1,0 +1,13 @@
+//
+// Electronic Technology Company 
+//
+
+
+public class Comms_Hum {
+
+	public static void main(String[] args) {
+		System.out.println("Hello Hum!");
+
+	}
+
+}

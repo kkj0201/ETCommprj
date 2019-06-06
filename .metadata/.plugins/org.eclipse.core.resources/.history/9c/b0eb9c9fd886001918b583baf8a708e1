@@ -1,0 +1,129 @@
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.Socket;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+
+import javax.swing.*;
+
+// 클래스간 데이터전달 방법명시
+
+public class ET_DataClient {
+
+	public static void main(String[] args) throws IOException {
+		Socket s = new Socket("localhost", 5000);
+		//BufferedReader input = new BufferedReader(new InputStreamReader(s.getInputStream()));
+		BufferedWriter output = new BufferedWriter(new OutputStreamWriter(s.getOutputStream()));
+		String Str1 = "send!!";
+		output.write(Str1);
+		//String res = input.readLine();
+		System.out.println(res);
+	
+		
+		DataStoring.DataStore(res);
+		DataParsing.Parsing(res);
+		
+		////////////////// GUI /////////////////
+		JFrame f = new JFrame();
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//f.add()
+		f.setSize(500, 400);
+		f.setVisible(true);
+		//System.exit(0);
+	}
+
+}
+
+class MyPanel extends JPanel implements ActionListener
+{
+	JTextField a, b, c;
+	double A, B, C;
+	
+	public MyPanel()
+	{
+		
+	}
+	JButton button = new JButton("Draw");
+	//add(button);
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		repaint();
+	}
+}
+
+class DataStoring{
+	public static void DataStore(String str) throws IOException
+	{	
+		FileWriter outputStream = null;
+		SimpleDateFormat format1 = new SimpleDateFormat("yyyyMMdd");
+		Date time = new Date();
+		
+		String time1 = format1.format(time);
+		try {
+			// 저장할때 날짜로 정리할것.
+			// 파일명 , true를 해주지않으면 새파일로 덮어 써버린다.
+			outputStream = new FileWriter("c:\\Data\\" + time1 + ".txt",true);
+					
+			outputStream.write(str + "\r\n");
+			outputStream.flush();
+
+		} finally {
+			if (outputStream != null ) {
+				outputStream.close();
+			}
+		}
+	}
+
+}
+
+class DataParsing{
+	// 그래프에 그릴시 데이터를 얻어오기위한 ArrayList 
+	
+	
+	/*
+	String ET_Date;
+	String ET_Time;
+	String ET_KVDC;
+	String ET_KVDC_peak;
+	String ET_Current;
+	String ET_Dust;
+	String ET_Spark;
+	String ET_Arc;
+	String ET_Curr_Limit;
+	String ET_Volt_Limit;
+	String ET_On_Time;
+	String ET_Off_Time;
+	*/
+	public static void Parsing(String str1)
+	{
+		/*
+		 * int Field_Lb_Start = str1.indexOf("Date"); int idx = str1.indexOf(",");
+		 */
+	//	String Field_Str;
+		String Data_Str[] = str1.split(",");
+		
+		for(int i = 0 ; i<Data_Str.length; i++) {
+			System.out.println(Data_Str[i]);
+		}
+		
+	}
+	
+	public static void DataSheet(String str1)
+	{
+		ArrayList<String> ET_Data_Total = new ArrayList<>();
+		String ET_Data;
+		ET_Data = "test";
+		ET_Data_Total.add(ET_Data);
+		
+	}
+}

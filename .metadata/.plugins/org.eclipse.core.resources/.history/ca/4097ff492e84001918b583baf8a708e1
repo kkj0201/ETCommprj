@@ -1,0 +1,12 @@
+package test101;
+
+public class sumsum {
+
+	public static void main(String[] args) {
+		System.out.print("dd");
+		System.out.println("dd");
+		System.out.printf("%d", 1);
+	
+	}
+
+}
